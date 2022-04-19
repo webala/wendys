@@ -1,0 +1,7 @@
+.testimonial h2 {
+    color: var(--text-secondary);
+}
+
+.testimonial  p{
+    color: var(--text-primary);
+}

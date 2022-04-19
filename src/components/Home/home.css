@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Square+Peg&display=swap');
 .Home {
-    height: 100vh;
+    height: fit-content;
 }
 
 .header {
@@ -40,4 +41,141 @@
 .nav-items a:hover {
     font-size: 1.3em;
     color: var(--text-secondary);
+}
+
+.overview {
+    position: relative;
+    top: 1em;
+    padding: 20px 200px;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+.overview img {
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+.overview-text {
+    font-family: 'Square Peg', cursive;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.overview-text h2 {
+    font-size: 150px;
+    color: var(--text-secondary);
+}
+
+.overview-text a {
+    text-decoration: none;
+    font-size: 2em;
+    color: var(--text-primary);
+}
+
+.btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-icon {
+    transition: 0.3s ease;
+}
+
+.overview-text a:hover {
+    font-size: 2.2em;
+    color: var(--text-secondary);
+}
+
+.overview-text a:hover .btn-icon {
+    transform: translateY(5px);
+}
+
+.products {
+    height: fit-content;
+    position: relative;
+    top: 50px;
+    padding: 0 200px;
+    display: grid;
+    grid-template-columns: repeat(4, 300px);
+    gap: 50px 100px;
+}
+
+.about {
+    height: 100vh;
+    position: relative;
+    top: 50px;
+    padding: 0 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.about h2 {
+    color: var(--text-secondary);
+    font-family:  'Square Peg', cursive;
+    font-size: 3em;
+}
+
+.about p {
+    font-size: 1.5em;
+    color: var(--text-primary);
+}
+
+.about .socials {
+    width: 50%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.about .socials a {
+    text-decoration: none;
+    font-size: 1.5em;
+    color: var(--text-secondary);
+    margin-top: 70px;
+}
+
+#testimonials {
+    height: fit-content;
+    padding: 100px 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.testimonials {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0 100px;
+    place-content: center;
+}
+
+.add-testimony {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px 0;
+    width: 50%;
+}
+
+.add-testimony textarea {
+    width: 50%;
+    height: 70px;
+    border-radius: 10px;
+    color: var(--text-secondary);
+    border: 1px solid var(--background-primary);
+}
+
+.add-testimony button {
+    width: 25%;
+    border-radius: 10px;
+    font-size: 1.1em;
+    color: var(--text-secondary);
+    border: 1px solid var(--background-primary);
 }
