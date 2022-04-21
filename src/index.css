@@ -12,6 +12,17 @@ body {
   --text-secondary: #EC255A;
 }
 
+::-webkit-scrollbar {
+  width: 11px;
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  width: 100%;
+  background: var(--background-primary);
+  border-radius: 2em;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
