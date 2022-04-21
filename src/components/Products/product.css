@@ -1,3 +1,34 @@
+.catalogue {
+    padding: 0 200px;
+}
+
+.link {
+    color: var(--text-primary);
+    position: relative;
+    top: 50px;
+    font-size: 1.7em;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.link-icon{
+    transition: 0.3s ease;
+    transition-delay: .2s;
+}
+.link:hover .link-icon {
+    transform: translateX(-20px);
+    color: var(--text-secondary);
+}
+
+.all-products {
+    display: grid;
+    grid-template-columns: repeat(4, 300px);
+    gap: 100px 100px;
+    place-content: center;
+    padding: 200px 0;
+}
+
 .product {
     width: 300px;
 }

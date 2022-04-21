@@ -1,47 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Square+Peg&display=swap');
 .Home {
     height: fit-content;
+    overflow-x: hidden;
 }
 
-.header {
-    width: 100%;
-    position: fixed;
-    height: calc(2em + 1em);
-    margin: 0;
-    padding: 0;
-}
-
-.header nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px 200px;
-}
-
-.logo {
-    height: 50px;
-}
-
-.nav-items ul{
-    display: flex;
-    list-style: none;  
-}
-
-.nav-items ul li {
-    margin: 0 50px;
-}
-
-.nav-items a{
-    color: var(--text-primary);
-    text-decoration: none;
-    font-size: 1.2em;
-    transition: font-size 0.5s ease;
-    transition-delay: 0.1s;
-}
-
-.nav-items a:hover {
-    font-size: 1.3em;
-    color: var(--text-secondary);
-}
 
 .overview {
     position: relative;
@@ -99,10 +61,37 @@
     height: fit-content;
     position: relative;
     top: 50px;
-    padding: 0 200px;
+    padding: 100px 50px;
     display: grid;
     grid-template-columns: repeat(4, 300px);
     gap: 50px 100px;
+    
+}
+
+.link {
+    color: var(--text-primary);
+    position: relative;
+    left: 200px;
+    font-size: 1.7em;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: 0.3s ease;
+    transition-delay: .2s;
+}
+
+.link-icon{
+    transition: 0.3s ease;
+    transition-delay: .2s;
+}
+
+#products .link:hover .link-icon {
+    transform: translateX(20px);
+    color: var(--text-secondary);
+}
+
+.link:hover {
+    color: var(--text-secondary);
 }
 
 .about {
@@ -117,7 +106,7 @@
 }
 
 
-.about h2 {
+.about h2, #testimonials h2 {
     color: var(--text-secondary);
     font-family:  'Square Peg', cursive;
     font-size: 3em;
@@ -173,9 +162,19 @@
 }
 
 .add-testimony button {
-    width: 25%;
+    width: fit-content;
+    padding: 0 20px;
     border-radius: 10px;
-    font-size: 1.1em;
+    font-size: 1.5em;
+    font-weight: 700;
     color: var(--text-secondary);
     border: 1px solid var(--background-primary);
+    font-family:  'Square Peg', cursive;
+    transition: 0.3s ease;
+    margin-top: 20px;
+}
+
+.add-testimony button:hover {
+    background: var(--text-secondary);
+    color: var(--text-primary)
 }
