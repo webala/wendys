@@ -9,7 +9,7 @@ function Header() {
     return (
       <header class='header'>
         <nav>
-          <img class='logo' src={Logo} alt='logo'/>
+          <a href='/dash'><img class='logo' src={Logo} alt='logo'/></a>
           <div class='nav-items'>
             <ul>
               <li>
