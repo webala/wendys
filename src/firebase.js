@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword} from 'firebase/auth'
+import {getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword, sendEmailVerification} from 'firebase/auth'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -17,31 +17,47 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth()
+export const auth = getAuth()
 
 export function signUp (email, password) {
     createUserWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
         const user = userCredential.user
-        alert(`current user: ${user}`)
+        if (user && user.emailVerified === false) {
+            sendEmailVerification(user)
+        }
+        return user;
     })
     .catch(error => {
         const errorCode = error.code
         const errorMessage = error.message
-        alert(`${errorCode}: ${errorMessage}`)
+        //alert(`${errorCode}: ${errorMessage}`)
+        if (errorCode == 'auth/email-already-in-use') {
+            alert('Email already in use')
+        }else if (errorCode == 'auth/weak-password') {
+            alert('Your password is too weak')
+        }
     })
 }
+
+
+
+
 
 export function login (email,password) {
     signInWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
         const user = userCredential.user
-        alert(`current user: ${user}`)
+        window.location()
     })
     .catch(error => {
         const errorCode = error.code
         const errorMessage = error.message
-        alert(`${errorCode}: ${errorMessage}`)
+        //alert(`${errorCode}: ${errorMessage}`)
+
+        if (errorCode == 'auth/wrong-password' || errorCode == 'auth/user-not-found') {
+            alert('Invalid email or password. Please try again')
+        }
     })
 }
 
