@@ -1,3 +1,88 @@
 .dash {
     height: 100vh;
+    color: var(--text-primary)
+}
+
+.dash-overview {
+    position: relative;
+    top: 5em;
+    margin: 20px 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dash-overview h1 {
+    position: relative;
+    right: 300px;
+    text-decoration: underline;
+}
+
+.account {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+}
+
+.account button {
+    margin: 20px 0;
+    width: 30%;
+    height: 40px;
+    border: 1px solid var(--background-secondary);
+    border-radius: 10px;
+    background: var(--text-secondary);
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: 0.3s ease;
+    color: var(--text-primary);
+}
+
+.account button:hover {
+    transform: scale(1.1);
+    background: var(--background-secondary);
+    color: var(--text-secondary);
+}
+
+.change-email, .change-password {
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    background: var(--background-secondary);
+    position: absolute;
+    top: 50%;
+    height: 250px;
+    justify-content: center;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10%;
+    transform: translateY(-200px);
+    transition: 0.3s ease;
+    transition-property: transform;
+}
+
+.change-email input, .change-password input{
+    height: 30px;
+    border-radius: 10px;
+    border: 1px solid var(--background-primary);
+    margin: 20px 0;
+}
+.change-email.show, .change-password.show {
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.change-email .toggle-btn, .change-password .toggle-btn {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    font-size: 1.5em;
+    width: fit-content;
+    height: fit-content;
+    background: var(--background-secondary);
+}
+
+
+.change-email button, .change-password button{
+    width: 50%;
 }
