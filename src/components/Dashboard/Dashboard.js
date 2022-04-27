@@ -1,14 +1,17 @@
 import React,{useState, useRef} from 'react'
-import { logOut, useAuth, changeEmail, changePassword } from '../../firebase'
+import { logOut, useAuth, changeEmail, changePassword, db } from '../../firebase'
 import './dashboard.css'
 import Header from '../Header/Header'
 import {GrFormClose} from 'react-icons/gr'
+import {addDoc, collection} from 'firebase/firestore'
 
 
 function Dashboard() {
 
     const [loading, setLoading] = useState(false)
     const [emailVerified, setEmailVerified] = useState(false)
+
+    const productsCollectionRef = collection(db, 'Products')
 
     const changeEmailRef = useRef()
     const changePasswordRef = useRef()
@@ -18,9 +21,17 @@ function Dashboard() {
 
     const currentUser = useAuth()
 
-    async function handleSubmit (e) {
+    
+
+    async function createProducts (e) {
         e.preventDefault()
-        
+        alert('Function called')
+        console.log('create products called')
+        await db.collection(productsCollectionRef).add({
+            name: nameRef.current.value,
+            quantity: quantityRef.current.value,
+            description: descRef.current.value
+        })
     }
 
     async function handleLogOut () {
@@ -80,8 +91,8 @@ function Dashboard() {
                 </div>
             </div>}
             
-            <form class='upload-items' onSubmit={() => handleSubmit()}>
-            <button class='toggle-btn' onClick={() => toggleAccountEditForm('.upload-items')}><GrFormClose class='close-icon'/></button>
+            <form class='upload-items' onSubmit={() => createProducts()}>
+                <button class='toggle-btn' onClick={() => toggleAccountEditForm('.upload-items')}><GrFormClose class='close-icon'/></button>
                 <h3>Upload Items</h3>
                 <div>
                     <label for='image'>Photo</label>
