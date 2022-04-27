@@ -16,6 +16,7 @@
     position: relative;
     right: 300px;
     text-decoration: underline;
+    
 }
 
 .account {
@@ -44,7 +45,11 @@
     color: var(--text-secondary);
 }
 
-.change-email, .change-password {
+.account .verify-msg {
+    opacity: 0.7;
+}
+
+.change-email, .change-password, .upload-items {
     visibility: hidden;
     display: flex;
     flex-direction: column;
@@ -59,20 +64,42 @@
     transform: translateY(-200px);
     transition: 0.3s ease;
     transition-property: transform;
+    align-items: center;
 }
 
-.change-email input, .change-password input{
+.upload-items {
+    height: fit-content;
+}
+
+.upload-items div {
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-items button {
+    width: 50%;
+    height: 40px;
+    border: 1px solid var(--background-secondary);
+    border-radius: 10px;
+    background: var(--text-secondary);
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+
+.change-email input, .change-password input, .upload-items input, .upload-items textarea{
     height: 30px;
     border-radius: 10px;
     border: 1px solid var(--background-primary);
     margin: 20px 0;
 }
-.change-email.show, .change-password.show {
+.change-email.show, .change-password.show, .upload-items.show {
     visibility: visible;
     transform: translateY(0);
 }
 
-.change-email .toggle-btn, .change-password .toggle-btn {
+.change-email .toggle-btn, .change-password .toggle-btn, .upload-items .toggle-btn {
     position: absolute;
     top: 0;
     right: 20px;

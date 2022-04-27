@@ -12,8 +12,16 @@ function Dashboard() {
 
     const changeEmailRef = useRef()
     const changePasswordRef = useRef()
+    const nameRef = useRef()
+    const descRef = useRef()
+    const quantityRef = useRef()
 
     const currentUser = useAuth()
+
+    async function handleSubmit (e) {
+        e.preventDefault()
+        
+    }
 
     async function handleLogOut () {
         setLoading(true)
@@ -50,12 +58,13 @@ function Dashboard() {
         <div class='dash-overview'> 
             <h1>Dashboard</h1>
 
-            <div class='account'>
+            {currentUser && <div class='account'>
                 <h3>Account Information</h3>
                 <p>Email: {currentUser?.email}</p>
-                {currentUser?.emailVerified === false && <p>Please verify your email address</p>}
+                {currentUser?.emailVerified === false && <p class='verify-msg'>Please verify your email address</p>}
                 <button onClick={() => toggleAccountEditForm('.change-email')}>Change Email</button>
                 <button onClick={() => toggleAccountEditForm('.change-password')}>Change Password</button>
+                <button onClick={() => toggleAccountEditForm('.upload-items')}>Upload Items</button>
                 <button onClick={() => handleLogOut()}>Sign Out</button>
                 <div class='change-email'>
                     <button class='toggle-btn' onClick={() => toggleAccountEditForm('.change-email')}><GrFormClose class='close-icon'/></button>
@@ -69,8 +78,29 @@ function Dashboard() {
                     <label> New Password</label><input type='password' ref={changePasswordRef}/>
                     <button onClick={() => handlePasswordUpdate()}>Submit Password</button>
                 </div>
-            </div>
+            </div>}
             
+            <form class='upload-items' onSubmit={() => handleSubmit()}>
+            <button class='toggle-btn' onClick={() => toggleAccountEditForm('.upload-items')}><GrFormClose class='close-icon'/></button>
+                <h3>Upload Items</h3>
+                <div>
+                    <label for='image'>Photo</label>
+                    <input type='file' placeholder='Image File' />
+                </div>
+                <div>
+                    <label for='item'>Item Name</label>
+                    <input type='text' ref={nameRef}/>
+                </div>
+                <div>
+                    <label for='quantity'>Quantity</label>
+                    <input type='number' ref={quantityRef}/>
+                </div>
+                <div>
+                    <label for='description'>Description</label>
+                    <textarea ref={descRef}></textarea>
+                </div>
+                <button type='submit'>Upload Item</button>
+            </form>
         </div>
     </div>
   )

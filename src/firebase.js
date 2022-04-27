@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import {getFirestore} from 'firebase/firestore'
 import {getAuth, updateEmail, updatePassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, signInWithEmailAndPassword, sendEmailVerification} from 'firebase/auth'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -12,12 +13,16 @@ const firebaseConfig = {
   projectId: "wendys-4d480",
   storageBucket: "wendys-4d480.appspot.com",
   messagingSenderId: "155413561495",
-  appId: "1:155413561495:web:ebc8b1ba4572b0038829d2"
+  appId: "1:155413561495:web:ebc8b1ba4572b0038829d2",
+
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth()
+export const db = getFirestore(app)
+export const auth = getAuth()  
+
+
 
 export function signUp (email, password) {
     createUserWithEmailAndPassword(auth, email, password)
@@ -72,6 +77,7 @@ export function logOut () {
 export function changeEmail (newEmail) {
     updateEmail(auth.currentUser, newEmail)
     .then(() => {
+        alert('Email updated')
         window.location.reload()
     })
     .catch(error => {
@@ -87,11 +93,14 @@ export function changeEmail (newEmail) {
 
 export function changePassword (newPass) {
     updatePassword(auth.currentUser, newPass)
-    .then(() => window.location.reload())
+    .then(() => {
+        alert('Password updated')
+        window.location.reload()
+    })
     .catch(error => {
         const errorCode = error.code
         const errorMessage = error.message
-        alert(`${errorCode}: ${errorMessage}`)
+        //alert(`${errorCode}: ${errorMessage}`)
 
         if (errorCode == 'auth/requires-recent-login') {
             alert('Changing password requeres recent login.')

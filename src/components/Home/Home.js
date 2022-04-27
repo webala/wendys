@@ -1,4 +1,4 @@
-import React, {useEffect}  from 'react'
+import React, {useState, useEffect}  from 'react'
 import './home.css';
 import Header from '../Header/Header';
 import OverviewImage from '../../assets/home-img.jpg';
@@ -9,17 +9,32 @@ import {FiTwitter} from 'react-icons/fi'
 import {FaTiktok} from 'react-icons/fa'
 import {BiMailSend} from 'react-icons/bi'
 import {Link} from 'react-router-dom'
+import { collection, getDocs } from 'firebase/firestore';
+import {db} from '../../firebase'
 
 
 
 
 function Home() {
   
+  const [products, setProducts] = useState([])
+  const productsCollectionRef = collection(db, 'Products')
+
+  useEffect (() => {
+    const getProducts = async () => {
+      const data = await getDocs(productsCollectionRef)
+      setProducts(data.docs.map((doc) => ({...doc.data(), id: doc.id})))
+    }
+
+    getProducts()
+  }, [])
 
   const handleScroll = () => {
     const header = document.querySelector('.header')
     header.classList.toggle('sticky', window.scroll > 0)
   }
+
+  console.log(products)
 
   return (
     <div class='Home' onScroll={handleScroll}>
@@ -35,12 +50,11 @@ function Home() {
       </section>
       <section id='products'>
         <div class='products'>
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
-          <Product />
+
+          {products.map((product) => {
+            return <Product name={product["name"]} />
+          })}
+
         </div>
         <Link to='/products' class='link'>More Items<BsArrowBarRight class='link-icon'/></Link>
       </section>

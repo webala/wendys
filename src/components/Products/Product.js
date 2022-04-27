@@ -5,11 +5,11 @@ import {AiOutlineComment} from 'react-icons/ai';
 import {FcLike} from 'react-icons/fc';
 import './product.css';
 
-function Product() {
+function Product({name}) {
   return (
     <div class='product'>
         <img src={PlaceholderImg} class='product-img' alt='product-image'/>
-        <h1>Brown wig</h1>
+        <h1>{name}</h1>
         <div class='product-action'>
             <a href='#'><MdAddShoppingCart /></a>
             <a href='#'><AiOutlineComment /></a>
